@@ -1,5 +1,5 @@
 {
-  "name": "express-curl",
+  "name": "@justinc/express-curl",
   "version": "2.0.0",
   "description": "Print equivalent curl of express requests",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sahilnarain/express-curl.git"
+    "url": "git+https://github.com/justin-calleja/express-curl.git"
   },
   "keywords": [
     "express",
@@ -17,7 +17,7 @@
   "author": "Sahil Narain",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sahilnarain/express-curl/issues"
+    "url": "https://github.com/justin-calleja/express-curl/issues"
   },
-  "homepage": "https://github.com/sahilnarain/express-curl#readme"
+  "homepage": "https://github.com/justin-calleja/express-curl#readme"
 }
