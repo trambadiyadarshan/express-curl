@@ -17,7 +17,7 @@ const fs = require('fs');
 const express = require('express');
 
 // Include express-curl as a dependency
-const expressCurl = require('express-curl);
+const { expressCurl } = require('express-curl');
 
 let app = express();
 ...
@@ -39,5 +39,62 @@ app.use('/users', usersRouter);
 ```
 
 Now the `stdout` will print the curl.
+
+### Customise the middleware
+
+To customise the middleware, you can require `expressCurlMiddlewareFactory` instead (Note: to use this module as in v1, require `expressCurl`):
+
+```
+const { expressCurlMiddlewareFactory } = require('express-curl');
+
+app.use(expressCurlMiddlewareFactory({
+    // Logs the request as a curl command using logFn.
+    // Default: true
+    log: true,
+    // The function to use to log the curl command.
+    // Default: console.log
+    logFn: console.log,
+    // Attaches the curl command as a string to express's `req` for access by other middleware.
+    // Default: true
+    attachToReq: true,
+    // The express `req`'s field name to which to assign the curl command as a string.
+    // Default: 'asCurlStr'
+    strName: 'asCurlStr',
+}));
+
+app.use((req, res, next) => {
+    console.log('I have access to asCurlStr:', req.asCurlStr);
+})
+```
+
+If you're fine with the defaults:
+
+```
+const { expressCurlMiddlewareFactory } = require('express-curl');
+
+app.use(expressCurlMiddlewareFactory());
+```
+
+### A note on requiring expressCurl
+
+This:
+
+```
+const { expressCurl } = require('express-curl');
+
+app.use(expressCurl);
+```
+
+Is the same as:
+
+```
+const { expressCurlMiddlewareFactory } = require('express-curl');
+
+app.use(expressCurlMiddlewareFactory(
+    attachToReq: false,
+));
+```
+
+Which is the v1 behaviour of this module.
 
 ![Alt text](https://i.imgur.com/DHTTrj9.png "curl")

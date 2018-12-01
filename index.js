@@ -43,15 +43,32 @@ const _buildCurl = function (params) {
   }
 };
 
-const printCurl = function (req, res, next) {
-  var curlParams = {};
-  curlParams.url = req.protocol + '://' + (req.headers.host || req.hostname) + req.originalUrl;
-  curlParams.verb = req.method.toUpperCase();
-  req.headers ? curlParams.headers = req.headers : null;
-  req.body ? curlParams.body = req.body : null;
-  console.log(`${_buildCurl(curlParams)}`);
+const expressCurlMiddlewareFactory = function (options) {
+  var opts = options || {};
+  var log = typeof opts.log === 'boolean' ? opts.log : true;
+  var logFn = opts.logFn || console.log;
+  var attachToReq = typeof opts.attachToReq === 'boolean' ? opts.attachToReq : true;
+  var strName = opts.strName || 'asCurlStr';
 
-  next();
-};
+  return function (req, res, next) {
+    if (log || attachToReq) {
+      var curlParams = {};
+      curlParams.url = req.protocol + '://' + (req.headers.host || req.hostname) + req.originalUrl;
+      curlParams.verb = req.method.toUpperCase();
+      req.headers ? curlParams.headers = req.headers : null;
+      req.body ? curlParams.body = req.body : null;
+      var asCurlStr = _buildCurl(curlParams);
+      if (log) logFn(asCurlStr);
+      if (attachToReq) req[strName] = asCurlStr;
+    }
 
-module.exports = printCurl;
+    next();
+  }
+}
+
+module.exports = {
+  expressCurlMiddlewareFactory,
+  expressCurl: expressCurlMiddlewareFactory({
+    attachToReq: false,
+  })
+}
