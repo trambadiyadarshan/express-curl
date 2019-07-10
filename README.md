@@ -1,23 +1,23 @@
-# express-curl
+# @darshan/get-curl
 
 Simple but effective, this `ExpressJS` middleware prints out the equivalent curl command. Typically this would be used as a utility for backend developers for replicating requests that may be causing problems.
 
-
 ### Installation
+
 Install the package by running the command below, from the root of your NodeJS project.
 
-```npm install --save express-curl```
-
+`npm install --save @darshan/get-curl`
 
 ### Usage
+
 1. Include the package in your ExpressJS app along with other dependencies.
 
 ```
 const fs = require('fs');
 const express = require('express');
 
-// Include express-curl as a dependency
-const { expressCurl } = require('express-curl');
+// Include @darshan/get-curl as a dependency
+const { expressCurl } = require('@darshan/get-curl');
 
 let app = express();
 ...
@@ -44,7 +44,7 @@ Now the `stdout` will print the curl.
 To customise the middleware, you can require `expressCurlMiddlewareFactory` instead (Note: to use this module as in v1, require `expressCurl`):
 
 ```
-const { expressCurlMiddlewareFactory } = require('express-curl');
+const { expressCurlMiddlewareFactory } = require('@darshan/get-curl');
 
 app.use(expressCurlMiddlewareFactory({
     // Logs the request as a curl command using logFn.
@@ -69,7 +69,7 @@ app.use((req, res, next) => {
 If you're fine with the defaults:
 
 ```
-const { expressCurlMiddlewareFactory } = require('express-curl');
+const { expressCurlMiddlewareFactory } = require('@darshan/get-curl');
 
 app.use(expressCurlMiddlewareFactory());
 ```
@@ -79,7 +79,7 @@ app.use(expressCurlMiddlewareFactory());
 This:
 
 ```
-const { expressCurl } = require('express-curl');
+const { expressCurl } = require('@darshan/get-curl');
 
 app.use(expressCurl);
 ```
@@ -87,7 +87,7 @@ app.use(expressCurl);
 Is the same as:
 
 ```
-const { expressCurlMiddlewareFactory } = require('express-curl');
+const { expressCurlMiddlewareFactory } = require('@darshan/get-curl');
 
 app.use(expressCurlMiddlewareFactory(
     attachToReq: false,
@@ -96,4 +96,4 @@ app.use(expressCurlMiddlewareFactory(
 
 Which is the v1 behaviour of this module.
 
-![Alt text](https://i.imgur.com/DHTTrj9.png "curl")
+![Alt text](https://i.imgur.com/DHTTrj9.png 'curl')

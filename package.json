@@ -1,6 +1,6 @@
 {
-  "name": "@trambadiyadarshan/express-curl",
-  "version": "3.0.0",
+  "name": "@darshan/get-curl",
+  "version": "1.0.0",
   "description": "Print equivalent curl of express requests",
   "main": "index.js",
   "scripts": {
