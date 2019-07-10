@@ -1,4 +1,4 @@
-# @darshan/get-curl
+# @darshan/express-curl
 
 Simple but effective, this `ExpressJS` middleware prints out the equivalent curl command. Typically this would be used as a utility for backend developers for replicating requests that may be causing problems.
 
@@ -6,7 +6,7 @@ Simple but effective, this `ExpressJS` middleware prints out the equivalent curl
 
 Install the package by running the command below, from the root of your NodeJS project.
 
-`npm install --save @darshan/get-curl`
+`npm install --save @darshan/express-curl`
 
 ### Usage
 
@@ -16,8 +16,8 @@ Install the package by running the command below, from the root of your NodeJS p
 const fs = require('fs');
 const express = require('express');
 
-// Include @darshan/get-curl as a dependency
-const { expressCurl } = require('@darshan/get-curl');
+// Include @darshan/express-curl as a dependency
+const { expressCurl } = require('@darshan/express-curl');
 
 let app = express();
 ...
@@ -44,7 +44,7 @@ Now the `stdout` will print the curl.
 To customise the middleware, you can require `expressCurlMiddlewareFactory` instead (Note: to use this module as in v1, require `expressCurl`):
 
 ```
-const { expressCurlMiddlewareFactory } = require('@darshan/get-curl');
+const { expressCurlMiddlewareFactory } = require('@darshan/express-curl');
 
 app.use(expressCurlMiddlewareFactory({
     // Logs the request as a curl command using logFn.
@@ -69,7 +69,7 @@ app.use((req, res, next) => {
 If you're fine with the defaults:
 
 ```
-const { expressCurlMiddlewareFactory } = require('@darshan/get-curl');
+const { expressCurlMiddlewareFactory } = require('@darshan/express-curl');
 
 app.use(expressCurlMiddlewareFactory());
 ```
@@ -79,7 +79,7 @@ app.use(expressCurlMiddlewareFactory());
 This:
 
 ```
-const { expressCurl } = require('@darshan/get-curl');
+const { expressCurl } = require('@darshan/express-curl');
 
 app.use(expressCurl);
 ```
@@ -87,7 +87,7 @@ app.use(expressCurl);
 Is the same as:
 
 ```
-const { expressCurlMiddlewareFactory } = require('@darshan/get-curl');
+const { expressCurlMiddlewareFactory } = require('@darshan/express-curl');
 
 app.use(expressCurlMiddlewareFactory(
     attachToReq: false,
