@@ -14,10 +14,6 @@ const _buildCurl = function (params) {
 
   try {
     if (params.headers) {
-      if (params.headers['content-length']) {
-        delete params.headers['content-length'];
-      }
-
       for (let key in params.headers) {
         _headers += `-H '${key}:${params.headers[key]}' `;
       }

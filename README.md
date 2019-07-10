@@ -27,7 +27,6 @@ let app = express();
 
 ```
 app.use(bodyParser.json());
-app.use(multiplart());
 ...
 
 // Include the express curl middleware
